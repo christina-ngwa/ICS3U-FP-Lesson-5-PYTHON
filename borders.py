@@ -8,25 +8,25 @@
 import ugame
 import stage
 
-import constants 
+import constants
 
 
 def game_scene():
     # This function is a scene
-    
+
     # an image bank for CircuitPython
     image_bank_1 = stage.Bank.from_bmp16("space_aliens.bmp")
-    
+
     # sets the background to image 0 in the bank
-    background = stage.Grid(image_bank_1, constants.SCREEN_X, 
+    background = stage.Grid(image_bank_1, constants.SCREEN_X,
                             constants.SCREEN_Y)
-    
+
     # a list of sprites that will be updated every frame
     sprites = []
 
-    ship = stage.Sprite(image_bank_1, 5, int(constants.SCREEN_X / 2 - 
+    ship = stage.Sprite(image_bank_1, 5, int(constants.SCREEN_X / 2 -
                                              constants.SPRITE_SIZE / 2),
-                        int(constants.SCREEN_Y - constants.SPRITE_SIZE 
+                        int(constants.SCREEN_Y - constants.SPRITE_SIZE
                             + constants.SPRITE_SIZE / 2))
     sprites.append(ship)  # insert at the top of sprite list
 
@@ -44,16 +44,16 @@ def game_scene():
         # get user input
         keys = ugame.buttons.get_pressed()
         # print(keys)
-        
+
         # update game logic
         # move ship right
-        if keys & ugame.K_RIGHT!= 0:
+        if keys & ugame.K_RIGHT != 0:
             if ship.x > constants.SCREEN_X - constants.SPRITE_SIZE:
                 ship.move(constants.SCREEN_X - constants.SPRITE_SIZE, ship.y)
             else:
                 ship.move(ship.x + 1, ship.y)
 
-        # move ship left  
+        # move ship left
         if keys & ugame.K_LEFT != 0:
             if ship.x < 0:
                 ship.move(0, ship.y)
